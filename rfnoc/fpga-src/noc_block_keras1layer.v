@@ -220,7 +220,7 @@ module noc_block_keras1layer #(
   // *************************************************
 
   // Assign out_data_tdata MSBs to 0. Currently only using 16 bit data
-  assign out_data_tdata[31:16] = 0;
+  assign out_data_tdata[31:18] = 0;
   // Assign tlast = 0... currently not propagated in the HLS ports
   assign out_data_tlast = 1'b0;
 
@@ -229,7 +229,7 @@ module noc_block_keras1layer #(
     .ap_start(), .ap_done(), .ap_ready(), .ap_idle(),
     .const_size_in(const_size_in), .const_size_out(const_size_out),
     .const_size_in_ap_vld(), .const_size_out_ap_vld(),
-    .data_V_TDATA(in_data_tdata), .data_V_TVALID(in_data_tvalid), .data_V_TREADY(in_data_tready),
-    .res_V_TDATA(out_data_tdata), .res_V_TVALID(out_data_tvalid), .res_V_TREADY(out_data_tready));
+    .data_V_TDATA(in_data_tdata[17:0]), .data_V_TVALID(in_data_tvalid), .data_V_TREADY(in_data_tready),
+    .res_V_TDATA(out_data_tdata[17:0]), .res_V_TVALID(out_data_tvalid), .res_V_TREADY(out_data_tready));
 
 endmodule
